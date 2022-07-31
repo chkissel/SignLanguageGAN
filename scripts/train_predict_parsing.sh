@@ -1,0 +1,13 @@
+python main.py \
+    --network conditional_gan \
+    --epoch 28 \
+    --n_epochs 35 \
+    --images_dir ./data/ \
+    --targets_dir ./data/ \
+    --conditions_dir ./data/ \
+    --dataset_name predict_parser \
+    --loss L1 \
+    --sample_interval 400 \
+    --checkpoint_interval 500 \
+    --batch_size 10 \
+    --lr 0.0002

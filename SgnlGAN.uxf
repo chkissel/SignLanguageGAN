@@ -1,0 +1,115 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes.</help_text><element><id>UMLClass</id><coordinates><x>589</x><y>139</y><w>210</w><h>410</h></coordinates><panel_attributes>&lt;&lt;SgnlGAN&gt;&gt;
+{ torchvision.utils }
+{ torch.autograd }
+{ torch.data }
+{ torch.nn }
+--
+- config : dict
+--
++ initialize(
+  - config[...] : dict
+) : PyTorch model
++ load_data(
+  - config[...] : dict
+) : PyTorch dataloader
++ sample_images(
+  - batches_done : int
+  - epoch : int
+  - config[...] : dict
+) 
++ parse_and_predict(
+  - real_A : tensor
+  - target_pose : tensor
+) : tensor
++ train(
+  - config[...] : dict
+  - dataloader[batch] : dict
+) : tensor
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>589</x><y>29</y><w>210</w><h>60</h></coordinates><panel_attributes>&lt;&lt;Main&gt;&gt;
+--
+- config : dict
+--
++ main(config: dict) 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>679</x><y>85</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;54</additional_attributes></element><element><id>UMLClass</id><coordinates><x>419</x><y>29</y><w>150</w><h>140</h></coordinates><panel_attributes>&lt;&lt;DoubleEncoderGenerator&gt;&gt;
+{ torch.nn.Module }
+--
+- in_channels : int
+- out_channels : int
+--
++ forward(
+  - x : tensor
+  - y : tensor
+) : tensor
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>89</y><w>50</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>179</y><w>150</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Discriminator&gt;&gt;
+{ torch.nn.Module }
+--
+- in_channels : int
+--
++ forward(
+  - img_A : tensor
+  - img_B : tensor
+) : tensor
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>249</y><w>50</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>29</y><w>100</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Up&gt;&gt;
+{ torch.nn.Module }
+--
+...
+--
++ forward(
+...
+)  : tensor
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>149</y><w>100</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Down&gt;&gt;
+{ torch.nn.Module }
+--
+...
+--
++ forward(
+...
+)  : tensor
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>509</y><w>150</w><h>40</h></coordinates><panel_attributes>&lt;&lt;Evaluation&gt;&gt;
+--
+...
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>529</y><w>60</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>139</y><w>150</w><h>40</h></coordinates><panel_attributes>&lt;&lt;VideoGenerator&gt;&gt;
+--
+...
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>189</y><w>150</w><h>40</h></coordinates><panel_attributes>&lt;&lt;VideoLoader&gt;&gt;
+--
+...
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>109</y><w>330</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>310;30;310;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>509</y><w>130</w><h>40</h></coordinates><panel_attributes>&lt;&lt;PostProcessing&gt;&gt;
+--
+...
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>319</y><w>150</w><h>170</h></coordinates><panel_attributes>&lt;&lt;MSASLReader&gt;&gt;
+{ torch.utils.data }
+--
+- [...] : dict
+- transforms : dict
+- padding : boolean
+--
+__len__( ) : int
+__getitem__(
+  - idx
+) : dict
++ find_indices( ) : int
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>129</y><w>50</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>299</y><w>50</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;10;10;60;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>821</x><y>249</y><w>150</w><h>170</h></coordinates><panel_attributes>&lt;&lt;SemanticParser&gt;&gt;
+{ torch.utils.data }
+--
+- [...] : dict
+- transforms : dict
+- padding : boolean
+--
+__len__( ) : int
+__getitem__(
+  - idx
+) : dict
++ find_indices( ) : int
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>150</y><w>50</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>30;100;10;19</additional_attributes></element><element><id>Relation</id><coordinates><x>791</x><y>40</y><w>210</w><h>230</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;10;190;210;180;210</additional_attributes></element><element><id>Relation</id><coordinates><x>921</x><y>159</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;30;10;14</additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>429</y><w>150</w><h>60</h></coordinates><panel_attributes>&lt;&lt;LIPLoader&gt;&gt;
+{ torch.utils.data }
+--
+...
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>942</x><y>399</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;30;10;14</additional_attributes></element><element><id>Relation</id><coordinates><x>421</x><y>499</y><w>180</w><h>80</h></coordinates><panel_attributes>
+lt=&lt;.
+
+&lt;&lt;apply methods&gt;&gt;
+</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>489</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>790</x><y>69</y><w>140</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;10;120;70</additional_attributes></element></diagram>
