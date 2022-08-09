@@ -1,7 +1,7 @@
 docker run \
     -e RUN_SCRIPT=run_sgnlgan.sh \
-    -v /home/ckissel/signlanguagegan/:/workspace \
-    -v /home/ckissel/gebaerdenlernen/gebaerdenlernen/:/workspace/data/ \
+    -v <path_to_repo>/:/workspace \
+    -v <path_to_dataset>/gebaerdenlernen/gebaerdenlernen/:/workspace/data/ \
     --gpus=all \
     --ipc=host \
     --name gl_container \
